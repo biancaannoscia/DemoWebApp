@@ -9,9 +9,6 @@ app.use(express.static(__dirname + '/public'));
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
-app.get('/', function(request, response) {
-  response.render('pages/index');
-});
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
@@ -56,6 +53,13 @@ Kitten.find(function (err, kittens) {
   if (err) return console.error(err);
   console.log(kittens);
 })
-Kitten.find({ name: /^Fluff/ }, function(){});
+
+
+app.get('/', function(request, response) { 
+	Kitten.find({ name: /^fluff/ }, function(err,kittens){
+		response.render('pages/index', {kittens:kittens});
+});
+  
+});
 
 	//function is whatever comes afterwards
