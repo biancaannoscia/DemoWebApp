@@ -56,4 +56,6 @@ Kitten.find(function (err, kittens) {
   if (err) return console.error(err);
   console.log(kittens);
 })
-Kitten.find({ name: /^Fluff/ }, function(){};
+Kitten.find({ name: /^Fluff/ }, function(){});
+
+	//function is whatever comes afterwards
