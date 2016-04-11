@@ -43,13 +43,17 @@ console.log(silence.name); // 'Silence'
 
 
 var Kitten = mongoose.model('Kitten', kittySchema);
-var fluffy = new Kitten({ name: 'fluffy' });
+
+/* var fluffy = new Kitten({ name: 'fluffy' });
 fluffy.speak(); // "Meow name is fluffy"
+
 fluffy.save(function (err, fluffy) {
   if (err) return console.error(err);
   fluffy.speak();
-});
-Kitten.find(function (err, kittens) {
+});*/
+
+
+/* Kitten.find(function (err, kittens) {
   if (err) return console.error(err);
   console.log(kittens);
 })
@@ -60,6 +64,32 @@ app.get('/', function(request, response) {
 		response.render('pages/index', {kittens:kittens});
 });
   
+}); */
+
+
+var getAndRenderPostedMessages = function(request, response) {
+  Kitten.find(function (err, kittens) {
+    if (err) return console.error(err);
+    var descendingMessages = kittens.reverse();
+    response.render('pages/index', {kittens: descendingMessages});
+  })
+}
+
+app.get('/', function(request, response) {
+  getAndRenderPostedMessages(request, response);
 });
+
+app.post('/', function (request, response) {
+  var newKitten = new Kitten({ messageText: request.body.kitten});
+  newKitten.save(function (err, newKitten) {
+    if (err) return console.error(err);
+    getAndRenderPostedMessages(request, response);
+  });
+});
+
+app.listen(app.get('port'), function() {
+  console.log('Node app is running on port', app.get('port'));
+});
+
 
 	//function is whatever comes afterwards

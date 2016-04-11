@@ -1,24 +1,43 @@
+
+
 <!DOCTYPE html>
 <html>
-
 <head>
-  <link rel="stylesheet" type="text/css" href="stylesheets/main.css"/>
-  <script src="/js/main.js"></script>
+  <% include ../partials/header.ejs %>
 </head>
 
 <body>
+  <div class="jumbotron text-center">
+    <div class="container">
+      <h1>Messages</h1>
+    </div>
+  </div>
+  <div class="container">
+    <hr>
+    <div class="row">
+      <div class="col-md-12">
+        <h2>
+          <span class="glyphicon glyphicon-heart-empty"></span>
+          Post messages for your friends to see
+        </h2>
 
-  <h1>yo web apps are so cool</h1>
-  <h2>web developing is fun! </h2>
+        <form method="post" action="/">
+          <div class="form-group">
+            <input type="text" name="message" class="form-control message-input" id="message" placeholder="What would you like to say?" maxlength="500" />
+            <button type="submit" class="btn btn-default message-submit">Post</button>
+          </div>
+        </form>
 
-  <p id="demo">
-    This is me testing out a lil html file
-  </p>
+        <div class="posted-messages">
+          <% for(var i=0; i<messages.length; i++) {%>
+            <div class="single-message">
+              <%= messages[i].messageText %>
+            </div>
+        <% } %>
 
-  <button type="button" onclick="myFunction()">
-    Try it
-  </button>
-
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
-
 </html>
