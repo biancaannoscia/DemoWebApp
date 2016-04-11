@@ -9,7 +9,7 @@
 <body>
   <div class="jumbotron text-center">
     <div class="container">
-      <h1>Messages</h1>
+      <h1>Kittens</h1>
     </div>
   </div>
   <div class="container">
@@ -23,13 +23,13 @@
 
         <form method="post" action="/">
           <div class="form-group">
-            <input type="text" name="message" class="form-control message-input" id="message" placeholder="What would you like to say?" maxlength="500" />
+            <input type="text" name="kitten" class="form-control message-input" id="message" placeholder="What would you like to say?" maxlength="500" />
             <button type="submit" class="btn btn-default message-submit">Post</button>
           </div>
         </form>
 
         <div class="posted-messages">
-          <% for(var i=0; i<messages.length; i++) {%>
+          <% for(var i=0; i<Kittens.length; i++) {%>
             <div class="single-message">
               <%= messages[i].messageText %>
             </div>
