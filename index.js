@@ -1,4 +1,7 @@
 var express = require('express');
+var bodyParser = require('body-parser')
+var mongoose = require('mongoose');
+
 var app = express();
 
 app.set('port', (process.env.PORT || 5000));
@@ -10,11 +13,8 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 
-app.listen(app.get('port'), function() {
-  console.log('Node app is running on port', app.get('port'));
-});
+app.use(bodyParser());
 
-var mongoose = require('mongoose');
 mongoose.connect(process.env.MONGOLAB_URI);
 
 var db = mongoose.connection;
@@ -37,14 +37,11 @@ kittySchema.methods.speak = function () {
 
 var Kitten = mongoose.model('Kitten', kittySchema);
 
-var silence = new Kitten({ name: 'Silence' });
-console.log(silence.name); // 'Silence'
+/* var silence = new Kitten({ name: 'Silence' });
+console.log(silence.name); // 'Silence' 
 
 
-
-var Kitten = mongoose.model('Kitten', kittySchema);
-
-/* var fluffy = new Kitten({ name: 'fluffy' });
+ var fluffy = new Kitten({ name: 'fluffy' });
 fluffy.speak(); // "Meow name is fluffy"
 
 fluffy.save(function (err, fluffy) {
@@ -87,6 +84,8 @@ app.post('/', function (request, response) {
   });
 });
 
-
+app.listen(app.get('port'), function() {
+  console.log('Node app is running on port', app.get('port'));
+});
 
 	//function is whatever comes afterwards
