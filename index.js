@@ -80,16 +80,13 @@ app.get('/', function(request, response) {
 });
 
 app.post('/', function (request, response) {
-  var newKitten = new Kitten({ messageText: request.body.kitten});
+  var newKitten = new Kitten({ name: request.body.kitten});
   newKitten.save(function (err, newKitten) {
     if (err) return console.error(err);
     getAndRenderPostedMessages(request, response);
   });
 });
 
-app.listen(app.get('port'), function() {
-  console.log('Node app is running on port', app.get('port'));
-});
 
 
 	//function is whatever comes afterwards
