@@ -32,7 +32,7 @@ kittySchema.methods.speak = function () {
   var greeting = this.name
     ? "Meow name is " + this.name
     : "I don't have a name";
-  console.log(greeting);
+  return greetings;
 }
 
 var Kitten = mongoose.model('Kitten', kittySchema);
@@ -78,6 +78,7 @@ app.get('/', function(request, response) {
 
 app.post('/', function (request, response) {
   var newKitten = new Kitten({ name: request.body.kitten });
+  newKitten.speak();
   newKitten.save(function (err, newKitten) {
     if (err) return console.error(err);
     getAndRenderPostedMessages(request, response);
