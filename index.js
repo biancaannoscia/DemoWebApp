@@ -78,7 +78,7 @@ app.get('/', function(request, response) {
 
 app.post('/', function (request, response) {
   var newKitten = new Kitten({ name: request.body.kitten });
-  newKitten.save(function (err, newKitten) {
+  newKitten.save(function (err, newKitten.speak()) {
     if (err) return console.error(err);
     getAndRenderPostedMessages(request, response);
   });
