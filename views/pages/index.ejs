@@ -29,11 +29,7 @@
         </form>
 
         <div class="posted-messages">
-          <% for(var i=0; i<kittens.length; i++) {%>
-            <div class="single-message">
-              <%= kittens[i].name %>
-            </div>
-        <% } %>
+          <% kitten.speak() %>
 
         </div>
       </div>
